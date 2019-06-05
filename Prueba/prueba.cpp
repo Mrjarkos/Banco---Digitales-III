@@ -43,9 +43,13 @@ int main(int argc, char const *argv[])
 	pthread_create(&threads[i], &attr[i], read_pipe, &data[i]);
 	}
 
+while(1){
 	for(int i=0; i<N_sensores; i++){
-		pthread_join(threads[i], NULL);
+		printf("[%i] X: %lf, Y: %lf, Z: %lf\n", i, data[i].x , data[i].y, data[i].z);
 	}
+	usleep(500*1000);
+}
+
 	return 0;
 }
 
@@ -68,8 +72,6 @@ void* read_pipe(void *data){
 	((arg_thread*)data)->x = Read[0];
 	((arg_thread*)data)->y = Read[1];
 	((arg_thread*)data)->z = Read[2];
-	printf("[%i] X: %lf, Y: %lf, Z: %lf\n", i, ((arg_thread*)data)->x , ((arg_thread*)data)->y, ((arg_thread*)data)->z);
 	close(fd);
 	}
-	
 }

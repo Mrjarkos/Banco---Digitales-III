@@ -56,7 +56,7 @@ def get_sample(i, sensor_type, par1, par2):
 def main_process(num_pipe):
     print(f'Arrancando hilo de tubería {FIFO_DATA}{num_pipe}')
     i = 0
-    time_delay = np.random.uniform(1, 5)
+    time_delay = np.random.uniform(0.1, 0.5)
     sensor_type = random.randint(1, 3)
     if sensor_type==1:
         par1 = np.random.uniform(3.0, 10.0, 3)
